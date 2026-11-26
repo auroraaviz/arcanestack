@@ -21,3 +21,9 @@
 - Fallos de testing: ninguno.
 - Correcciones: aplicada la corrección descrita en la iteración 1.
 - Resultado: APROBADO tras `npm run lint` y `npm run build` sin errores; no hay script `test` configurado.
+
+### Tarea 3 — área privada y cierre de sesión
+- Iteración 1: añadida página protegida `/dashboard` con estado vacío inicial, cuenta autenticada y formulario de logout mediante acción de servidor.
+- Fallos de testing: ninguno. El primer `npm run build` durante el desarrollo detectó datos dinámicos fuera de Suspense al prerenderizar el dashboard.
+- Correcciones: se marcó `/dashboard` con `instant = false` para renderizarlo bajo demanda.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.

@@ -46,3 +46,9 @@ export async function signUp(
   }
   redirect("/dashboard");
 }
+
+export async function signOut(): Promise<never> {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/login");
+}
