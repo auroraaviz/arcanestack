@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { signOut } from "@/lib/supabase/auth-actions";
 import { getCurrentUser } from "@/lib/supabase/auth";
 
 export const instant = false;
 
 export default async function DashboardPage() {
+  await connection();
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
