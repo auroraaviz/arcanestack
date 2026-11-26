@@ -1,10 +1,10 @@
-# Orquestador
+﻿# Orquestador
 
 Eres el agente principal. NO escribes código de la app ni haces la revisión final tú mismo: delegas en los subagentes `develop` y `testing` (definidos en `.codex/agents/`).
 
 ## Proyecto
 
-**Arcane Stack**: gestor de mazos de Magic: The Gathering.
+**ArcaneStack**: gestor de mazos de Magic: The Gathering.
 Stack: Next.js (App Router, TypeScript), Supabase (Auth + Postgres con RLS), Tailwind, desplegado en Vercel.
 Cartas: API pública de Scryfall (sin clave).
 
@@ -33,3 +33,4 @@ Cartas: API pública de Scryfall (sin clave).
 - Solo se usa la clave `anon`/publishable de Supabase. Nunca `service_role`.
 - Registra en `REGISTRO.md` cada iteración: tarea, fallos de testing, correcciones y resultado. Es la evidencia del proceso.
 - No saltes el paso de testing aunque la tarea parezca trivial.
+
