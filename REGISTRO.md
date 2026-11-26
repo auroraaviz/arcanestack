@@ -7,3 +7,17 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+- IteraciÃ³n 2: movida la consulta de sesiÃ³n a `getCurrentUser()` en `lib/supabase/auth.ts`; el layout usa ese helper.
+- Fallos de testing: ninguno en esta iteraciÃ³n.
+- Correcciones: centralizada la consulta de sesiÃ³n.
+- Resultado: `npm run lint` y `npm run build` finalizaron sin errores.
+
+### Tarea 2 — registro e inicio de sesión
+- Iteración 1: añadidos formularios accesibles para registro/login y acciones de servidor con validación de credenciales y soporte para confirmación por correo.
+- Fallos de testing: RECHAZADA por Directriz 9: `app/dashboard/layout.tsx` consultaba `auth.getUser()` directamente fuera de `lib/supabase/` o `lib/data/`.
+- Correcciones: movida la consulta a `getCurrentUser()` en `lib/supabase/auth.ts`; el layout ahora llama al helper.
+- Resultado: RECHAZADA; se corrigió en la iteración siguiente.
+- Iteración 2: revisada la corrección de `getCurrentUser()` y los formularios de registro/login.
+- Fallos de testing: ninguno.
+- Correcciones: aplicada la corrección descrita en la iteración 1.
+- Resultado: APROBADO tras `npm run lint` y `npm run build` sin errores; no hay script `test` configurado.
