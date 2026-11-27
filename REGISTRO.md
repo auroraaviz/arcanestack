@@ -130,3 +130,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteracion inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+### Tarea 2 — estado de validez del mazo
+
+- Iteración 1: añadida la función pura `validateDeckSize()` para calcular el total y la validez de Standard y Commander; el detalle muestra el total y un mensaje accesible, o indica que no puede calcularse si falla la carga de cartas.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
