@@ -57,3 +57,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: se construye explícitamente el objeto de actualización con `name`, `format` y `description`, por lo que no se aceptan campos adicionales como `user_id`.
 - Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores.
+
+### Tarea 2 — listado de mazos
+
+- Iteración 1: sustituido el estado vacío de `/dashboard` por listado con nombre, formato y descripción; se añadieron estados vacío, error con reintento y carga accesible. La consulta espera `connection()` y usa `listDecks()` desde `lib/data/decks.ts`.
+- Fallos de testing: ninguno.
+- Correcciones: el build detectó una variable `decks` posiblemente no inicializada; se tipó como `Deck[]` y se inicializó vacía antes de la consulta.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; el dashboard se mantiene dinámico y el estado de carga queda disponible.

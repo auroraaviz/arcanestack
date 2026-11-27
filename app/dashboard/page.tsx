@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
+import { listDecks, type Deck } from "@/lib/data/decks";
 import { signOut } from "@/lib/supabase/auth-actions";
 import { getCurrentUser } from "@/lib/supabase/auth";
 
@@ -9,6 +10,14 @@ export default async function DashboardPage() {
   await connection();
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+
+  let decks: Deck[] = [];
+  let hasLoadError = false;
+  try {
+    decks = await listDecks();
+  } catch {
+    hasLoadError = true;
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950 text-zinc-100">
@@ -30,7 +39,7 @@ export default async function DashboardPage() {
           </form>
         </div>
       </header>
-      <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-6 py-16 sm:px-10">
+      <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6 py-16 sm:px-10">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-violet-300">
           Tu colección
         </p>
@@ -38,15 +47,39 @@ export default async function DashboardPage() {
           Bienvenido a ArcaneStack
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-300">
-          Aquí podrás organizar tus mazos de Magic y llevar un registro de tus
-          partidas. Tu espacio está listo para empezar.
+          Organiza tus mazos de Magic y lleva un registro de tus partidas.
         </p>
-        <div className="mt-10 rounded-2xl border border-dashed border-white/20 bg-white/[0.03] p-8 sm:p-10">
-          <h2 className="text-xl font-semibold">Aún no tienes mazos</h2>
-          <p className="mt-2 text-zinc-400">
-            Cuando creemos tu primer mazo, aparecerá aquí.
-          </p>
-        </div>
+        <section aria-labelledby="decks-heading" className="mt-10">
+          <h2 id="decks-heading" className="text-2xl font-semibold">Mis mazos</h2>
+          {hasLoadError ? (
+            <div role="alert" className="mt-5 rounded-2xl border border-red-300/30 bg-red-950/40 p-6">
+              <p className="text-red-100">No se pudieron cargar tus mazos. Inténtalo de nuevo.</p>
+              <a
+                href="/dashboard"
+                className="mt-4 inline-flex rounded-lg border border-red-200/40 px-4 py-2 font-medium text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+              >
+                Reintentar
+              </a>
+            </div>
+          ) : decks.length ? (
+            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+              {decks.map((deck) => (
+                <li key={deck.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                  <h3 className="text-xl font-semibold">{deck.name}</h3>
+                  <p className="mt-2 text-sm font-medium capitalize text-violet-300">{deck.format}</p>
+                  <p className="mt-3 whitespace-pre-wrap text-zinc-300">
+                    {deck.description || "Sin descripción."}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-dashed border-white/20 bg-white/[0.03] p-8 sm:p-10">
+              <h3 className="text-xl font-semibold">Aún no tienes mazos</h3>
+              <p className="mt-2 text-zinc-400">Cuando crees tu primer mazo, aparecerá aquí.</p>
+            </div>
+          )}
+        </section>
       </section>
     </main>
   );
