@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getDeck } from "@/lib/data/decks";
 import { DeleteDeckForm } from "@/components/decks/delete-deck-form";
+import { CardSearch } from "@/components/decks/card-search";
 
 export const instant = false;
 
@@ -27,6 +28,7 @@ export default async function DeckDetailPage({ params }: PageProps<"/dashboard/d
           <Link href={`/dashboard/decks/${deck.id}/edit`} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-violet-300 px-4 py-2 font-semibold text-zinc-950 hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">Editar mazo</Link>
           <DeleteDeckForm deckId={deck.id} />
         </div>
+        <CardSearch deckId={deck.id} />
       </article>
     </main>
   );

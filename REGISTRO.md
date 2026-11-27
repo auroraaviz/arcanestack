@@ -98,3 +98,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+### Tarea 3 — buscador de cartas
+
+- Iteración 1: añadido buscador con debounce de 400 ms, estados accesibles, resultados con imágenes de Scryfall y formulario para añadir una cantidad al mazo; configurado el dominio remoto de imágenes.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
