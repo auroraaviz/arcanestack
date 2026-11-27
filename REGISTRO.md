@@ -34,3 +34,12 @@
 - Corrección: `DashboardLayout` y `DashboardPage` esperan `connection()` de `next/server` antes de consultar Supabase (commits `3cedffa` y `e237dd5`). Así, la verificación autenticada se ejecuta para la petición y sigue protegida en servidor; Cache Components permanece habilitado.
 - Verificación: APROBADO por testing. `npm run lint` y `npm run build` pasan; el build deja `/dashboard` como ruta dinámica con Cache Components.
 - Comprobación manual: registro, inicio de sesión, acceso al dashboard, cierre de sesión y nuevo inicio de sesión verificados en local.
+
+## Portada ArcaneStack
+
+### Tarea 1 — página de inicio estática
+
+- Iteración 1: sustituida la plantilla de Create Next App por una portada responsive y accesible con el nombre ArcaneStack, una descripción del gestor de mazos de Magic: The Gathering y enlaces de acceso a login, registro y mazos. La página no consulta la sesión ni usa APIs.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; la raíz se genera como ruta estática. No hay script `test` configurado.
