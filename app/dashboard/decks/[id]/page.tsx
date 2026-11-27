@@ -26,7 +26,7 @@ export default async function DeckDetailPage({ params }: PageProps<"/dashboard/d
   const deckValidity = cardsLoadError ? null : validateDeckSize(deck.format, cards);
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-10 text-ink sm:px-8 sm:py-14">
+    <main className="mx-auto flex-1 w-full max-w-7xl px-5 py-10 text-ink sm:px-8 sm:py-14">
       <article className="mx-auto w-full max-w-5xl">
         <Link href="/dashboard" className="text-sm font-medium text-forest underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest">Volver a mis mazos</Link>
         <header className="relative mt-10 border-b border-line pb-8 sm:mt-14 sm:pb-10">

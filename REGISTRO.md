@@ -166,3 +166,9 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteracion inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+### Tarea 4 — estados de carga y error claros
+
+- Iteración 1: actualizados los esqueletos de dashboard y detalle al sistema claro con tokens existentes, estados de error y acción Reintentar; retiradas las alturas de pantalla completa de los segmentos para que el footer permanezca al pie.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores.
