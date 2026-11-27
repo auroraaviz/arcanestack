@@ -41,3 +41,8 @@
 22. Diseño responsive (móvil y escritorio).
 23. Accesibilidad básica: labels en inputs, `alt` en imágenes, botones con texto o `aria-label`.
 24. El pie de página incluye: "No afiliado a Wizards of the Coast. Datos e imágenes de Scryfall."
+
+## Seguridad de datos (añadidas tras los rechazos de testing)
+
+25. Las actualizaciones a la base de datos construyen el objeto con campos explícitos; nunca aceptan `user_id` ni campos no listados.
+26. El servidor no confía en datos de carta enviados por el cliente: al añadir una carta, vuelve a consultar Scryfall por `scryfall_id` para obtener nombre, imagen y tipo.
