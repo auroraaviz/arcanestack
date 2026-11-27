@@ -64,3 +64,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: el build detectó una variable `decks` posiblemente no inicializada; se tipó como `Deck[]` y se inicializó vacía antes de la consulta.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; el dashboard se mantiene dinámico y el estado de carga queda disponible.
+
+### Tarea 3 — crear mazo
+
+- Iteración 1: añadida ruta de creación y formulario accesible; la acción valida en servidor nombre (1–80), formato y descripción (máximo 500) antes de llamar a `createDeck()`. `user_id` se obtiene en la capa de datos desde la sesión.
+- Fallos de testing: ninguno.
+- Correcciones: el primer build detectó el estado inicial sin tipo del formulario y después una lectura dinámica durante el prerender de la ruta. Se tipó el estado y la página espera `connection()`.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; `/dashboard/decks/new` se genera como ruta dinámica. No hay script `test` configurado.

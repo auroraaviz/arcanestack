@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
+import Link from "next/link";
 import { listDecks, type Deck } from "@/lib/data/decks";
 import { signOut } from "@/lib/supabase/auth-actions";
 import { getCurrentUser } from "@/lib/supabase/auth";
@@ -50,7 +51,15 @@ export default async function DashboardPage() {
           Organiza tus mazos de Magic y lleva un registro de tus partidas.
         </p>
         <section aria-labelledby="decks-heading" className="mt-10">
-          <h2 id="decks-heading" className="text-2xl font-semibold">Mis mazos</h2>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <h2 id="decks-heading" className="text-2xl font-semibold">Mis mazos</h2>
+            <Link
+              href="/dashboard/decks/new"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-violet-300 px-4 py-2 font-semibold text-zinc-950 transition hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+            >
+              Crear mazo
+            </Link>
+          </div>
           {hasLoadError ? (
             <div role="alert" className="mt-5 rounded-2xl border border-red-300/30 bg-red-950/40 p-6">
               <p className="text-red-100">No se pudieron cargar tus mazos. Inténtalo de nuevo.</p>
