@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getDeck } from "@/lib/data/decks";
+import { listDeckCards, type DeckCard } from "@/lib/data/deck-cards";
 import { DeleteDeckForm } from "@/components/decks/delete-deck-form";
 import { CardSearch } from "@/components/decks/card-search";
+import { DeckCardList } from "@/components/decks/deck-card-list";
 
 export const instant = false;
 
@@ -12,6 +14,14 @@ export default async function DeckDetailPage({ params }: PageProps<"/dashboard/d
   const { id } = await params;
   const deck = await getDeck(id);
   if (!deck) notFound();
+
+  let cards: DeckCard[] = [];
+  let cardsLoadError = false;
+  try {
+    cards = await listDeckCards(id);
+  } catch {
+    cardsLoadError = true;
+  }
 
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-12 text-zinc-100 sm:px-10">
@@ -29,6 +39,22 @@ export default async function DeckDetailPage({ params }: PageProps<"/dashboard/d
           <DeleteDeckForm deckId={deck.id} />
         </div>
         <CardSearch deckId={deck.id} />
+        <section aria-labelledby="deck-cards-heading" className="mt-10 border-t border-white/10 pt-8">
+          <h2 id="deck-cards-heading" className="text-2xl font-semibold">Cartas del mazo</h2>
+          {cardsLoadError ? (
+            <div role="alert" className="mt-5 rounded-2xl border border-red-300/30 bg-red-950/40 p-6">
+              <p className="text-red-100">No se pudieron cargar las cartas de este mazo.</p>
+              <Link
+                href={`/dashboard/decks/${deck.id}`}
+                className="mt-4 inline-flex rounded-lg border border-red-200/40 px-4 py-2 font-medium text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+              >
+                Reintentar
+              </Link>
+            </div>
+          ) : (
+            <DeckCardList deckId={deck.id} cards={cards} />
+          )}
+        </section>
       </article>
     </main>
   );

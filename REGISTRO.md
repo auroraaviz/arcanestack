@@ -105,3 +105,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+### Tarea 4 — lista de cartas del mazo
+
+- Iteración 1: añadida en el detalle una lista de cartas con imágenes, nombre y cantidad; se agregaron controles para cambiar cantidad y quitar, junto con estados vacío, error con reintento y carga mediante el estado de la ruta.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
