@@ -137,3 +137,18 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+## Ronda visual — The Living Grimoire
+
+### Tarea 1 — sistema de diseño global y portada
+
+- Iteración 1: añadidos tokens claros de papel/verde, fuentes editorial/UI/monospace, navegación superior estática y responsive, pie legal y portada editorial con ornamentos SVG/CSS discretos.
+- Fallos de testing (RECHAZADO):
+  - [Solicitud del usuario] app/globals.css:11: --ink-muted: #6D6C65 queda ligeramente por debajo de 4,5:1 sobre #F0EEE8. Oscurece el token para asegurar el contraste mínimo.
+  - [Solicitud del usuario] REGISTRO.md:141-157: la sección «Ronda visual — The Living Grimoire» / Tarea 1 está duplicada. Conserva una sola entrada.
+- Correcciones: oscurecido `--ink-muted` a `#66655F`; eliminada la entrada duplicada y consolidado el historial de la tarea.
+- Resultado iteración 1: RECHAZADO.
+- Iteración 2: aplicada la corrección de contraste y consolidación de la sección.
+- Fallos de testing (iteración 2): ninguno.
+- Correcciones: no aplican en esta iteración.
+- Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; la portada raíz permanece estática.
