@@ -91,3 +91,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+### Tarea 2 — datos y acciones de cartas del mazo
+
+- Iteración 1: añadidas funciones para listar, añadir, actualizar cantidad y quitar cartas. Cada operación verifica sesión y propiedad del mazo; al añadir, el servidor reconsulta Scryfall por id y guarda campos explícitos. La validación de cantidad está separada para incorporar las reglas de Magic en la funcionalidad 4.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
