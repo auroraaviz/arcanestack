@@ -71,3 +71,14 @@
 - Fallos de testing: ninguno.
 - Correcciones: el primer build detectó el estado inicial sin tipo del formulario y después una lectura dinámica durante el prerender de la ruta. Se tipó el estado y la página espera `connection()`.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; `/dashboard/decks/new` se genera como ruta dinámica. No hay script `test` configurado.
+
+### Tarea 4 — editar, borrar y detalle del mazo
+
+- Iteración 1: añadidas las páginas de detalle y edición, acciones de edición y borrado con validación/propiedad en servidor, confirmación antes del borrado y enlaces desde el listado. Las páginas de detalle y edición esperan `connection()` antes de consultar el mazo y muestran not-found para mazos inexistentes o ajenos.
+- Fallos de testing: [Directriz nº 20] `app/dashboard/decks/[id]/loading.tsx`: no existe un estado de carga para las páginas de detalle y edición, que consultan Supabase. Añade un `loading.tsx` accesible en el segmento `[id]`.
+- Correcciones: añadida `app/dashboard/decks/[id]/loading.tsx` con indicador accesible `role="status"`, `aria-busy` y texto para lectores de pantalla.
+- Resultado iteración 1: RECHAZADO.
+- Iteración 2: aplicada la corrección para cargar los datos de detalle y edición con un estado accesible.
+- Fallos de testing: ninguno.
+- Correcciones: añadida `app/dashboard/decks/[id]/loading.tsx` con indicador accesible `role="status"`, `aria-busy` y texto para lectores de pantalla.
+- Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; las rutas quedan dinámicas.

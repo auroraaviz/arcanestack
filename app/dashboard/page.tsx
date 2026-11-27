@@ -4,6 +4,7 @@ import Link from "next/link";
 import { listDecks, type Deck } from "@/lib/data/decks";
 import { signOut } from "@/lib/supabase/auth-actions";
 import { getCurrentUser } from "@/lib/supabase/auth";
+import { DeleteDeckForm } from "@/components/decks/delete-deck-form";
 
 export const instant = false;
 
@@ -74,11 +75,19 @@ export default async function DashboardPage() {
             <ul className="mt-5 grid gap-4 sm:grid-cols-2">
               {decks.map((deck) => (
                 <li key={deck.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                  <h3 className="text-xl font-semibold">{deck.name}</h3>
+                  <h3 className="text-xl font-semibold">
+                    <Link href={`/dashboard/decks/${deck.id}`} className="underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">
+                      {deck.name}
+                    </Link>
+                  </h3>
                   <p className="mt-2 text-sm font-medium capitalize text-violet-300">{deck.format}</p>
                   <p className="mt-3 whitespace-pre-wrap text-zinc-300">
                     {deck.description || "Sin descripción."}
                   </p>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <Link href={`/dashboard/decks/${deck.id}/edit`} className="inline-flex min-h-10 items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-sm font-semibold hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">Editar</Link>
+                    <DeleteDeckForm deckId={deck.id} />
+                  </div>
                 </li>
               ))}
             </ul>
