@@ -82,3 +82,12 @@
 - Fallos de testing: ninguno.
 - Correcciones: añadida `app/dashboard/decks/[id]/loading.tsx` con indicador accesible `role="status"`, `aria-busy` y texto para lectores de pantalla.
 - Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; las rutas quedan dinámicas.
+
+## Funcionalidad 3: buscador de cartas y cartas del mazo
+
+### Tarea 1 — cliente Scryfall y Route Handler
+
+- Iteración 1: añadidos búsqueda y consulta por id en `lib/scryfall.ts`, con normalización de cartas, cabeceras requeridas y cola que respeta una pausa mínima de 100 ms; añadido `GET /api/cards/search` con sesión y validación de `q`.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
