@@ -112,3 +112,12 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+## Aviso legal global
+
+### Tarea 1 — pie de página global
+
+- Iteración 1: añadido un `<footer>` estático al layout raíz con el aviso legal exacto de Wizards of the Coast y Scryfall; no consulta sesión ni APIs.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.

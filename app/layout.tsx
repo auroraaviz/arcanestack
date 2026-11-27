@@ -23,7 +23,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <footer className="mt-auto border-t border-white/10 bg-zinc-950 px-5 py-6 text-center text-sm leading-6 text-zinc-400 sm:px-8">
+          <p>No afiliado a Wizards of the Coast. Datos e imágenes de Scryfall.</p>
+        </footer>
+      </body>
     </html>
   );
 }
