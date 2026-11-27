@@ -121,3 +121,12 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+## Reglas de Magic
+
+### Tarea 1 — validacion de copias y tamano maximo Commander
+
+- Iteracion 1: ampliada la validacion de `lib/data/deck-cards.ts` para rechazar mas de cuatro copias en Standard, mas de una en Commander salvo tierras basicas y mas de 100 cartas en Commander, tanto al anadir como al cambiar cantidad. El formato y las cantidades existentes se leen desde la base de datos en el servidor; el tamano minimo/exacto del mazo no bloquea escrituras.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteracion inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
