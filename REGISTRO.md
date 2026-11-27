@@ -159,3 +159,10 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
+
+### Tarea 3 — detalle de mazo
+
+- Iteracion 1: aplicado el sistema visual claro al detalle del mazo, buscador, resultados, lista de cartas y controles; se conserva la forma y ajuste de imagenes. El estado de validez incorpora icono junto al mensaje textual y total.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteracion inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.
