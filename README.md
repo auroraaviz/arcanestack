@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ArcaneStack
 
-## Getting Started
+Gestor de mazos de *Magic: The Gathering*. Permite crear mazos (Standard o Commander), buscar cartas en Scryfall, añadirlas con cantidad y ver si el mazo cumple las reglas de su formato.
 
-First, run the development server:
+**App en producción:** https://arcanestack.vercel.app
+
+## Stack
+
+- Next.js (App Router, TypeScript) y Tailwind
+- Supabase: autenticación y Postgres con RLS por usuario (`supabase/schema.sql`)
+- API pública de Scryfall, llamada solo desde el servidor
+- Desplegado en Vercel
+
+## Funcionalidades
+
+- Registro, login y logout; rutas privadas comprobadas en servidor
+- CRUD de mazos (nombre, formato y descripción)
+- Buscador de cartas con debounce y imágenes sin recortar
+- Reglas validadas en servidor: máximo 4 copias (1 en Commander) salvo tierras básicas, y máximo 100 cartas en Commander
+- Estado de validez del mazo: Standard con mínimo 60 cartas, Commander con exactamente 100
+
+## Cómo se construyó: equipo de 3 agentes (Codex)
+
+| Agente | Archivo | Papel |
+|---|---|---|
+| Orquestador | `AGENTS.md` | Divide el trabajo, delega, hace commit solo con APROBADO |
+| Develop | `.codex/agents/develop.toml` | Programa siguiendo sus normas |
+| Testing | `.codex/agents/testing.toml` | Revisa contra `DIRECTRICES.md` y responde APROBADO o RECHAZADO |
+
+Cada tarea sigue el ciclo develop → testing → correcciones → commit. Cada iteración, con los fallos reales detectados por Testing y sus correcciones, está en [`REGISTRO.md`](./REGISTRO.md).
+
+## Ejecutar en local
 
 ```bash
+npm install
+cp .env.example .env.local   # rellena con las claves anon de tu proyecto Supabase
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ejecuta `supabase/schema.sql` en el SQL Editor de tu proyecto. Solo se usa la clave `anon`/publishable.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Limitaciones conocidas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- La pausa entre peticiones a Scryfall se mantiene por instancia del servidor, no de forma global.
+- No hay tests automáticos: la revisión la hace el subagente Testing con lint, build y las directrices.
+- El contador de partidas no está implementado.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*No afiliado a Wizards of the Coast. Datos e imágenes de Scryfall.*
