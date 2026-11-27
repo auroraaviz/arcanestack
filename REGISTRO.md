@@ -43,3 +43,17 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; la raíz se genera como ruta estática. No hay script `test` configurado.
+
+## Funcionalidad 2: CRUD de mazos
+
+### Tarea 1 — capa de datos
+
+- Iteración 1: añadidos `listDecks()`, `getDeck(deckId)`, `createDeck(input)`, `updateDeck(deckId, input)` y `deleteDeck(deckId)` en `lib/data/decks.ts`. Cada operación obtiene el usuario con `getCurrentUser()` en el servidor y filtra por su ID o lo asigna al crear; ninguna acepta `user_id` como entrada. Errores de Supabase se propagan con mensajes de contexto.
+- Iteración 1: APROBADO por lint/build, pero RECHAZADO por testing.
+- Fallos de testing: [Directriz nº 6] `lib/data/decks.ts:78-83`: `updateDeck()` pasa `input` directamente a `.update()`. Un objeto de entrada con una propiedad adicional `user_id` podría modificar el dueño del mazo. Construye el objeto de actualización explícitamente con `name`, `format` y `description`, y nunca actualices `user_id`.
+- Correcciones: la iteración 2 construye el objeto de actualización explícitamente con `name`, `format` y `description`, excluyendo cualquier propiedad adicional.
+- Resultado iteración 1: RECHAZADO.
+- Iteración 2: aplicada la corrección para limitar los campos actualizados.
+- Fallos de testing: ninguno.
+- Correcciones: se construye explícitamente el objeto de actualización con `name`, `format` y `description`, por lo que no se aceptan campos adicionales como `user_id`.
+- Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores.
