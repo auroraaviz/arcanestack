@@ -10,6 +10,8 @@
   --ink-muted: #66655F;
   --gilt: #A88B58;
   --line: #D8D1C3;
+  --danger: #70263D;
+  --danger-hover: #541A2B;
   --font-editorial: var(--font-cormorant);
   --font-ui: var(--font-dm-sans);
   --font-data: var(--font-ibm-mono);
@@ -24,6 +26,8 @@
   --color-ink-muted: var(--ink-muted);
   --color-gilt: var(--gilt);
   --color-line: var(--line);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
   --font-serif: var(--font-editorial);
   --font-sans: var(--font-ui);
   --font-mono: var(--font-data);

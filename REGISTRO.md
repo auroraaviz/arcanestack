@@ -172,3 +172,13 @@
 - Fallos de testing: ninguno.
 - Correcciones: no aplican en la iteración inicial.
 - Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores.
+
+
+## Correccion visual del boton destructivo
+
+### Tarea 1 — boton Borrar mazo
+
+- Iteracion 1: actualizado el token de color destructivo y el boton compartido del dashboard y detalle.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteracion inicial.
+- Resultado: APROBADO. Contrastes calculados: texto/superficie del boton 9,56:1; fondo/pagina 8,90:1; fondo/superficie 9,56:1; texto en hover 12,46:1; foco 7,93:1. `npm run lint` y `npm run build` finalizaron sin errores.
