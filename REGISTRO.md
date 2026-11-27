@@ -152,3 +152,10 @@
 - Fallos de testing (iteración 2): ninguno.
 - Correcciones: no aplican en esta iteración.
 - Resultado iteración 2: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; la portada raíz permanece estática.
+
+### Tarea 2 — dashboard y formularios
+
+- Iteración 1: rediseñado el listado de mazos con composición editorial, tipografía serif, insignias de formato y ornamento discreto; formularios de creación/edición y acceso adoptan las superficies, colores y tipografía del sistema visual. Se eliminó el encabezado local duplicado, usando la navegación global ya existente.
+- Fallos de testing: ninguno.
+- Correcciones: no aplican en la iteración inicial.
+- Resultado: APROBADO. `npm run lint` y `npm run build` finalizaron sin errores; no hay script `test` configurado.

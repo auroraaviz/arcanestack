@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import Link from "next/link";
 import { listDecks, type Deck } from "@/lib/data/decks";
-import { signOut } from "@/lib/supabase/auth-actions";
 import { getCurrentUser } from "@/lib/supabase/auth";
 import { DeleteDeckForm } from "@/components/decks/delete-deck-form";
 
@@ -22,79 +21,75 @@ export default async function DashboardPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-zinc-950 text-zinc-100">
-      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-10">
-        <a href="/dashboard" className="text-lg font-semibold tracking-wide">
-          <span className="text-violet-300">Arcane</span>Stack
-        </a>
-        <div className="flex items-center gap-4">
-          <p className="max-w-[min(45vw,20rem)] truncate text-sm text-zinc-300">
-            {user.email}
-          </p>
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="rounded-lg border border-white/20 px-4 py-2 text-sm font-medium transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
-            >
-              Cerrar sesión
-            </button>
-          </form>
+    <main className="flex-1 bg-page px-5 py-12 sm:px-8 sm:py-16 lg:px-12">
+      <section className="mx-auto w-full max-w-6xl">
+        <div className="flex flex-col justify-between gap-6 border-b border-line pb-8 sm:flex-row sm:items-end">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-forest">El grimorio</p>
+            <h1 className="mt-3 font-serif text-5xl font-medium leading-none tracking-tight text-ink sm:text-6xl">
+              Mis mazos
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-7 text-ink-muted">
+              Tus listas, reunidas en un solo lugar para seguir tomando forma.
+            </p>
+          </div>
+          <p className="font-mono text-xs text-ink-muted sm:pb-1">{user.email}</p>
         </div>
-      </header>
-      <section className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6 py-16 sm:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-violet-300">
-          Tu colección
-        </p>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Bienvenido a ArcaneStack
-        </h1>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-300">
-          Organiza tus mazos de Magic y lleva un registro de tus partidas.
-        </p>
-        <section aria-labelledby="decks-heading" className="mt-10">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <h2 id="decks-heading" className="text-2xl font-semibold">Mis mazos</h2>
+
+        <section aria-labelledby="decks-heading" className="mt-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-5">
+            <h2 id="decks-heading" className="font-serif text-3xl font-medium text-ink">Tu biblioteca</h2>
             <Link
               href="/dashboard/decks/new"
-              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-violet-300 px-4 py-2 font-semibold text-zinc-950 transition hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
+              className="inline-flex min-h-11 items-center justify-center gap-3 bg-forest px-5 py-2 text-sm font-semibold text-paper transition-colors hover:bg-forest-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest"
             >
-              Crear mazo
+              <span aria-hidden="true">＋</span> Crear mazo
             </Link>
           </div>
           {hasLoadError ? (
-            <div role="alert" className="mt-5 rounded-2xl border border-red-300/30 bg-red-950/40 p-6">
-              <p className="text-red-100">No se pudieron cargar tus mazos. Inténtalo de nuevo.</p>
-              <a
-                href="/dashboard"
-                className="mt-4 inline-flex rounded-lg border border-red-200/40 px-4 py-2 font-medium text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300"
-              >
+            <div role="alert" className="border border-line bg-paper p-6 sm:p-8">
+              <p className="text-ink">No se pudieron cargar tus mazos. Inténtalo de nuevo.</p>
+              <a href="/dashboard" className="mt-4 inline-flex min-h-10 items-center font-semibold text-forest-deep underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest">
                 Reintentar
               </a>
             </div>
           ) : decks.length ? (
-            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-              {decks.map((deck) => (
-                <li key={deck.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                  <h3 className="text-xl font-semibold">
-                    <Link href={`/dashboard/decks/${deck.id}`} className="underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">
-                      {deck.name}
-                    </Link>
-                  </h3>
-                  <p className="mt-2 text-sm font-medium capitalize text-violet-300">{deck.format}</p>
-                  <p className="mt-3 whitespace-pre-wrap text-zinc-300">
-                    {deck.description || "Sin descripción."}
-                  </p>
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <Link href={`/dashboard/decks/${deck.id}/edit`} className="inline-flex min-h-10 items-center justify-center rounded-lg border border-white/20 px-4 py-2 text-sm font-semibold hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">Editar</Link>
+            <ol className="divide-y divide-line border-y border-line">
+              {decks.map((deck, index) => (
+                <li key={deck.id} className="grid gap-x-6 gap-y-4 py-6 sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:items-center sm:py-8">
+                  <span aria-hidden="true" className="font-mono text-xs text-ink-muted">{String(index + 1).padStart(2, "0")}</span>
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                      <h3 className="font-serif text-3xl font-medium leading-tight text-ink sm:text-4xl">
+                        <Link href={`/dashboard/decks/${deck.id}`} className="decoration-gilt decoration-1 underline-offset-4 hover:underline focus-visible:rounded-sm">
+                          {deck.name}
+                        </Link>
+                      </h3>
+                      <span className="inline-flex items-center border border-forest/35 px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-forest-deep">
+                        {deck.format}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex items-start gap-3">
+                      <svg aria-hidden="true" viewBox="0 0 28 10" fill="none" className="mt-2 h-2.5 w-7 shrink-0 text-gilt">
+                        <path d="M1 5h8m10 0h8M10 5l4-4 4 4-4 4-4-4Z" stroke="currentColor" strokeWidth=".8" />
+                      </svg>
+                      <p className="whitespace-pre-wrap text-sm leading-6 text-ink-muted">
+                        {deck.description || "Sin descripción."}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+                    <Link href={`/dashboard/decks/${deck.id}/edit`} className="inline-flex min-h-10 items-center px-3 text-sm font-semibold text-forest-deep underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest">Editar</Link>
                     <DeleteDeckForm deckId={deck.id} />
                   </div>
                 </li>
               ))}
-            </ul>
+            </ol>
           ) : (
-            <div className="mt-5 rounded-2xl border border-dashed border-white/20 bg-white/[0.03] p-8 sm:p-10">
-              <h3 className="text-xl font-semibold">Aún no tienes mazos</h3>
-              <p className="mt-2 text-zinc-400">Cuando crees tu primer mazo, aparecerá aquí.</p>
+            <div className="border-y border-line bg-paper px-6 py-10 sm:px-10">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-forest">Una página en blanco</p>
+              <h3 className="mt-3 font-serif text-3xl font-medium text-ink">Aún no tienes mazos</h3>
+              <p className="mt-2 text-ink-muted">Cuando crees el primero, aparecerá aquí.</p>
             </div>
           )}
         </section>
